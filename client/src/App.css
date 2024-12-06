@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+.font-audio {
+    font-family: "Audiowide", "sans-serif";
+}
+.hidden {
+    display: none;
+}
+
+.dropDiv {
+    position: relative;
+}
+.dropdown {
+    position: absolute;
+    width: 1rem;
+    height: 33vh;
+    z-index: 10;
+}

@@ -1,0 +1,132 @@
+[
+    {
+        "materialName": "Zyton388",
+        "vendorPhone": 5555555555,
+        "stock": [
+            {
+                "location": "AA0112",
+                "amount": 2000,
+                "lot": "444kjlkj"
+            },
+            {
+                "location": "AA0113",
+                "amount": 2000,
+                "lot": "444kjlkj"
+            },
+            {
+                "location": "AA0114",
+                "amount": 2000,
+                "lot": "444kjlkj"
+            },
+            {
+                "location": "AA0115",
+                "amount": 2000,
+                "lot": "444kjlkj"
+            }
+        ]
+    },
+    {
+        "materialName": "PP-3d",
+        "vendorPhone": 5555555553,
+        "stock": [
+            {
+                "location": "AA0116",
+                "amount": 2000,
+                "lot": "444kfdj"
+            },
+            {
+                "location": "AA0117",
+                "amount": 2000,
+                "lot": "444kfdj"
+            },
+            {
+                "location": "AA0118",
+                "amount": 2000,
+                "lot": "444kfdj"
+            },
+            {
+                "location": "AA0119",
+                "amount": 2000,
+                "lot": "444kfdj"
+            }
+        ]
+    },
+    {
+        "materialName": "Dupont-399",
+        "vendorPhone": 5555555533,
+        "stock": [
+            {
+                "location": "AA0120",
+                "amount": 2000,
+                "lot": "lkj3333"
+            },
+            {
+                "location": "AA0121",
+                "amount": 2000,
+                "lot": "lkj3333"
+            },
+            {
+                "location": "AA0122",
+                "amount": 2000,
+                "lot": "lkj3333"
+            },
+            {
+                "location": "AA0123",
+                "amount": 2000,
+                "lot": "lkj3333"
+            }
+        ]
+    },
+    {
+        "materialName": "Zyton377",
+        "vendorPhone": 5555555577,
+        "stock": [
+            {
+                "location": "AB0112",
+                "amount": 2000,
+                "lot": "kkk43"
+            },
+            {
+                "location": "AB0113",
+                "amount": 2000,
+                "lot": "kkk43"
+            },
+            {
+                "location": "AB0114",
+                "amount": 2000,
+                "lot": "kkk43"
+            },
+            {
+                "location": "AB0115",
+                "amount": 2000,
+                "lot": "kkk43"
+            }
+        ]
+    },
+    {
+        "materialName": "Poly222",
+        "vendorPhone": 5555553333,
+        "stock": [
+            {
+                "location": "AB0122",
+                "amount": 2000,
+                "lot": "jkl22"
+            },
+            {
+                "location": "AB0123",
+                "amount": 2000,
+                "lot": "jkl22"
+            },
+            {
+                "location": "AB0124",
+                "amount": 2000,
+                "lot": "jkl22"
+            },
+            {
+                "location": "AB0125",
+                "amount": 2000,
+                "lot": "jkl22"
+            }
+        ]
+    }
+]
