@@ -1,23 +1,27 @@
 import { useState, createContext, useEffect } from 'react'
+import useMaterials from './hooks/useMaterials'
+import useUsers from './hooks/useUsers'
 import './App.css'
 import { Routes, Route } from "react-router-dom"
 import axios from 'axios'
-
+import Navbar from './components/nav/Navbar'
 import Parts from './components/inventory/parts/Parts'
 import Register from "./components/user/Register"
+import useParts from './hooks/useParts'
 import Login from './components/auth/Login'
 import Layout from './components/layouts/Layout'
 import Monitor from './components/production/Monitor'
-import Materials from './components/inventory/material/Materials'
+import useMachines from './hooks/useMachines'
 import { jwtDecode } from 'jwt-decode'
 import FactoryContext from './context/factory'
 function App() {
   const [dropdown, setDropdown] = useState(false)
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
-  const [userList, setUserList] = useState([])
-  const [partsList, setPartsList] = useState([])
-
+  const [users] = useUsers()
+  const [parts] = useParts()
+  const [machines] = useMachines()
+  const [materials] = useMaterials()
   function assignToken(tkn) {
     if (tkn) {
       setToken(tkn)
@@ -28,8 +32,8 @@ function App() {
 
   function checkAuth() {
     if (user !== null) {
-      for (let i = 0; i < userList.length; i++) {
-        if (userList[i].email === user.email) {
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].email === user.email) {
           return true
         }
       }
@@ -38,31 +42,14 @@ function App() {
   }
   function closeDropdown(e) {
     const { name } = e.target;
-    console.log(name, dropdown)
-    if (name !== "main") {
+    if (name === "open") {
       setDropdown(!dropdown)
-    } else if (name === "open") {
-      setDropdown(true)
+    } else {
+      setDropdown(false)
     }
   }
   useEffect(() => {
-    axios.get("http://localhost:9000/users", {
-      withCredentials: true,
-      baseURL: "http://localhost:9000"
-    })
-      .then(res => {
-        setUserList(res.data)
-      })
-      .catch(err => console.log(err))
-    axios.get("http://localhost:9000/part", {
-      withCredentials: true,
-      baseURL: "http://localhost:9000"
-    })
-      .then(res => {
-        console.log(res.data)
-        setPartsList(res.data)
-      })
-      .catch(err => console.log(err))
+    console.log(users)
   }, [])
 
 
@@ -90,7 +77,9 @@ function App() {
         closeDropdown,
         dropdown,
         token,
-        partsList
+        parts, 
+        materials,
+        machines
       }}
     >
       <div>

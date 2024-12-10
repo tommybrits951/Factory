@@ -4,11 +4,17 @@ const Materials = require("../models/Materials")
 
 async function getAllParts(req, res, next) {
     try {
-        const parts = await Parts.find().lean()
+        const parts = await Parts.find().exec()
         if (!parts) {
             return res.status(500).json({message: "Couldn't get parts!"})
         }
-        res.status(200).json(parts)
+        let arr = []
+        for (let i = 0; i < parts.length; i++) {
+            const mat = await Materials.findById(parts[i].material)
+            arr.push({...parts[i]._doc, material: mat})
+        }
+        console.log(arr)
+        res.status(200).json(arr)
     } catch (err) {
         next(err)
     }
@@ -19,6 +25,11 @@ async function insertPart(req, res, next) {
         const {partName, cycle, cavities, shotWeight, partWeight, material, stock} = req.body;
         if (!partName || !cycle || !cavities || !shotWeight || !partWeight || !material || !stock) {
             return res.status(400).json({message: "All fields required!"})
+        }
+        const verifyMaterial = await Materials.findById(material)
+        if (!verifyMaterial) {
+            
+            return res.status(400).json({message: "Couldn't find that material!"})
         }
         const partsList = await Parts.find().lean()
         const partNo = Math.abs(partsList.length + 10001 + 1)
@@ -56,10 +67,30 @@ async function updatePart(req, res, next) {
         next(err)
     }
 }
+async function getPartById(req, res) {
+    try {
+        const {id} = req.params;
+        const part = await Parts.findById(id)
+        const material_id = part.material;
+        const material = await Materials.findById(material_id)
+        
+        if (!part) {
+            res.status(404).json({message: "Couldn't find part with that id."})
+        }
+        if (!material) {
+            res.status(404).json({message: "Couldn't find material with that id."})
+        }
+        res.status(200).json({...part._doc, material: material})
+    } catch (err) {
+
+        res.status(500).json({message: "Something's wrong!"})
+    }
+}
 
 
 module.exports = {
     getAllParts,
     insertPart,
-    updatePart
+    updatePart,
+    getPartById
 }

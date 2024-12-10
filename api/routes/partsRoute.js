@@ -7,5 +7,5 @@ router.route("/")
 .post(controller.insertPart)
 .patch(controller.updatePart)
 .delete()
-
+router.get("/:id", controller.getPartById)
 module.exports = router

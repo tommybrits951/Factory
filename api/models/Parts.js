@@ -50,4 +50,4 @@ const partsSchema = new mongoose.Schema({
     }]
 })
 
-module.exports = new mongoose.model("Parts", partsSchema)
+module.exports = mongoose.model("Parts", partsSchema)

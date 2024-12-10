@@ -6,19 +6,30 @@ const machineSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    size: {
+    priority: {
+        type: Number,
+        default: 10
+    },
+    job: {
         type: String,
-        required: true
+        default: "No Job"
     },
-    model: {
-        type: String, 
-        required: true
+    partName: {
+        type: String,
     },
-    currentJobNumber: {
+    partNumber: Number,
+    lot: String,
+    material: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Job",
+        ref: "Material",
         required: false
-    }
+    },
+    amount: Number,
+    time: Number,
+    status: {
+        type: String,
+        default: "No Job"
+    } 
 })
 
 

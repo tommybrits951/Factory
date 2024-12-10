@@ -13,6 +13,7 @@ app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
 }))
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(fileUpload())
@@ -23,7 +24,6 @@ app.use("/part", require("./routes/partsRoute"))
 app.use("/mach", require("./routes/machineRoute"))
 
 mongoose.connection.once("open", () => {
-    console.log("connected to DB!")
     app.listen(PORT, () => {
         console.log(`Running on port ${PORT}`)
     })
