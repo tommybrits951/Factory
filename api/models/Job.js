@@ -13,6 +13,7 @@ const jobSchema = new mongoose.Schema({
         type: String,
         default: "pending"
     },
+    machineNumber: Number,
     start: Date,
     end: Date,
     lots: String

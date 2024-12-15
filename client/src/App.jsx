@@ -22,6 +22,7 @@ function App() {
   const [parts] = useParts()
   const [machines] = useMachines()
   const [materials] = useMaterials()
+
   function assignToken(tkn) {
     if (tkn) {
       setToken(tkn)
@@ -40,6 +41,7 @@ function App() {
     }
     return false
   }
+  
   function closeDropdown(e) {
     const { name } = e.target;
     if (name === "open") {

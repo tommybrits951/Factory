@@ -1,5 +1,5 @@
 const Machine = require("../models/Machine")
-
+const Material = require("../models/Materials")
 async function getMachines(req, res) {
     try {
         const machines = await Machine.find().exec()
@@ -28,13 +28,15 @@ async function insertMachine(req, res) {
 
 async function updateMachine(req, res) {
     try {
-        const {number, size, model, currentJob, _id} = req.body;
-        if (!number && !size && !model && !currentJob) {
-            return res.status(400).json({message: "Must make a change!"})
+        const {number, priority, job, partName, partNumber, lot, material, amount, time, status} = req.body
+        if (!number || !priority || !job || !partName || !partNumber || !lot || !material || !amount || !time || !status) {
+            res.status(400).json({message: "All fields required!"})
         }
-        const machine = await Machine.findOneAndUpdate({_id}, {number, size, model, currentJob})
-        if (machine) {
-            return res.status(201).json({message: `Machine ${number} updated!`})
+        const mat = await Material.findById(material).exec()
+        const results = await Machine.findOneAndUpdate({number}, {...req.body}).exec()
+        const endResult = {...results._doc, material: mat}
+        if (endResult) {
+            res.status(201).json(endResult)
         }
     } catch (err) {
         res.status(500).json({message: err.message || "Something's wrong!"})
